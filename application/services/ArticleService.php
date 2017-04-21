@@ -67,6 +67,11 @@ class ArticleService
         }
     }
 
+    /*
+     * Надо привести в ОПП вид,
+     * чтобы функция возвращала массив
+     * с объектами, а не результат запроса
+     */
     function getAllPer($first, $users_on_page)
     {
         $DB_connect = new DB_connect();
