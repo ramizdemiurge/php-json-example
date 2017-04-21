@@ -76,13 +76,33 @@ class ArticleService
         return $result;
     }
 
+//    function getAll()
+//    {
+//        $DB_connect = new DB_connect();
+//        $mysqli = $DB_connect->getMysqli();
+//        $result = $mysqli->query("SELECT * FROM articles") or die("Ошибка getAll: " . $mysqli->error);
+//        $mysqli->close();
+//        return $result;
+//    }
+
     function getAll()
     {
         $DB_connect = new DB_connect();
         $mysqli = $DB_connect->getMysqli();
         $result = $mysqli->query("SELECT * FROM articles") or die("Ошибка getAll: " . $mysqli->error);
+        $Articles = array();
+        for ($i = 0; $data = mysqli_fetch_array($result); $i++) {
+            $Article = new Article();
+            //$current_post = array('id' => $data[0], 'title' => $data[1], 'subtitle' => $data[5], 'author' => $data[2], 'date' => $data[3]);
+            $Article->setId($data[0]);
+            $Article->setTitle($data[1]);
+            $Article->setQuestion($data[5]);
+            $Article->setAuthor($data[2]);
+            $Article->setDate($data[3]);
+            $Articles[$i] = $Article;
+        }
         $mysqli->close();
-        return $result;
+        return $Articles;
     }
 
     function getCount()

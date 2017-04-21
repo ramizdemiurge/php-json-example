@@ -9,11 +9,17 @@ require "application/models/entity/Article.php";
 require "application/services/ArticleService.php";
 
 $ArticleService = new ArticleService();
-$result = $ArticleService->getAll();
+$Articles = $ArticleService->getAll();
 
 $array_posts = array();
-for ($i = 0; $data = mysqli_fetch_array($result); $i++) {
-    $current_post = array('id' => $data[0], 'title' => $data[1], 'subtitle' => $data[5], 'author' => $data[2], 'date' => $data[3]);
-    $array_posts[$i++] = $current_post;
+
+for ($i = 0; $i < count($Articles); $i++) {
+    $current_Article = $Articles[$i];
+    $current_post = ['id' => $current_Article->getId(),
+                            'title' => $current_Article->getTitle(),
+                            'subtitle' => $current_Article->getQuestion(),
+                            'author' => $current_Article->getAuthor(),
+                            'date' => $current_Article->getDate()];
+    $array_posts[$i] = $current_post;
 }
 echo json_encode($array_posts, JSON_UNESCAPED_UNICODE);
