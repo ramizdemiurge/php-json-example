@@ -11,7 +11,7 @@ require "application/services/ArticleService.php";
 $ArticleService = new ArticleService();
 $Article = new Article();
 
-if (isset($_POST['article'])) {
+if (isset($_GET['article'])) {
 
     $mysqltime = date ("Y-m-d H:i:s", time());
 

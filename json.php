@@ -6,7 +6,7 @@
  * Time: 5:06 PM
  */
 
-error_reporting(0); //Ибо тут только json возвращаем
+//error_reporting(0); //Ибо тут только json возвращаем
 
 if (isset($_GET['case'])) {
     $act = $_GET['case'];
